@@ -37,4 +37,13 @@ public class Configuration {
     public static String readDBUrl (){
         return propFileContent.get("DB_URL").toString();
     }
+    public static String readUsername(){
+        return propFileContent.get("username").toString();
+    }
+    public static String readPass(){
+        return propFileContent.get("pass").toString();
+    }
+    public static String readBaseUrl(){
+        return propFileContent.get("baseUrl").toString();
+    }
 }

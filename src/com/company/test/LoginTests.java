@@ -7,15 +7,18 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class LoginTests {
-    private ThreadLocal <Driver> driver = new ThreadLocal<Driver>();
+public class LoginTests extends BaseTest {
 
 
 
     @Test
     void test1(){
-    LoginPage login = new LoginPage(driver.get());
-    login.clickLoginBtn();
+
+        LoginPage loginPage = new LoginPage(getBaseDriver());
+        loginPage.clickLoginBtn();
+        Assert.assertFalse(loginPage.getSigninButton().isDisplayed());
+        System.out.println("Test 1");
+
 
     }
 }

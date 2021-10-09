@@ -1,14 +1,20 @@
 package com.company.pagefactoryElements;
 
 import com.company.configuration.Driver;
-import com.company.test.BaseTest;
+import jdk.jfr.Enabled;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends BaseTest {
+public class LoginPage  {
 
     private ThreadLocal <Driver> driver = new ThreadLocal<Driver>();
+    private WebDriverWait wait;
+
     protected Driver getDriver(){
         return driver.get();
     }
@@ -21,12 +27,16 @@ public class LoginPage extends BaseTest {
     private WebElement registerLinkLoc;
     @FindBy(id="sign-in-button")
     private WebElement signinButton;
+    @FindBy(xpath = "//p[contains(text(),'Sign in')]")
+    private WebElement signInHeader;
+
     @FindBy(id="nav-link-login")
     private WebElement loginBtn;
 
     public LoginPage(Driver driver){
-        //this.getDriver();
-        PageFactory.initElements(driver,this);
+        //getDriver();
+        wait = new WebDriverWait(driver, 5);
+       PageFactory.initElements( driver,this);
     }
     public void fillUsername(String username){
         usernameField.sendKeys(username);
@@ -37,4 +47,13 @@ public class LoginPage extends BaseTest {
     public void clickLoginBtn(){
         loginBtn.click();
     }
+
+    public WebElement getSigninButton(){
+        wait.until(ExpectedConditions.visibilityOf(signinButton));
+        return signinButton;
+    }
+
+
+
+
 }

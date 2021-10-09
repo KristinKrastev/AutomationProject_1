@@ -1,12 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Skiilo Platform Tests" parallel="none">
     <test name = "Chrome">
-           <parameter name="browser" value="chrome"></parameter>
+           <parameter name="browser" value="Chrome"></parameter>
            <classes>
                <class name="com.company.test.LoginTests"></class>
            </classes>
-       </test>
-   <!--    <test name = "Firefox">
+    </test>
+       <test name = "Firefox">
            <parameter name="browser" value="firefox"></parameter>
            <classes>
                <class name="com.company.test.LoginTests"></class>
@@ -23,5 +23,5 @@
         <classes>
             <class name="com.company.test.LoginTests"></class>
         </classes>
-    </test>-->
+    </test>
 </suite>

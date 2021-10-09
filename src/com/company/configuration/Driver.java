@@ -16,27 +16,27 @@ public class Driver implements WebDriver {
     //WebDriver driver = null;
     ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     //Driver Constructor
-    public Driver (String browser){
-        if(browser.equalsIgnoreCase("chrome")){
+    public Driver (String browserType){
+        if(browserType.equalsIgnoreCase("chrome")){
             System.out.println("This is inside Driver Class - Chrome");
             System.setProperty("webdriver.chrome.driver","C:\\Users\\Kris\\Documents\\Selenium\\chromedriver.exe");
             driver.set(new ChromeDriver());
-        }else if (browser.equalsIgnoreCase("firefox")){
+        }else if (browserType.equalsIgnoreCase("firefox")){
             System.out.println("This is inside Driver Class - Firefox");
             System.setProperty("webdriver.gecko.driver","C:\\Users\\Kris\\Documents\\Selenium\\geckodriver.exe");
             driver.set(new FirefoxDriver()); ;
-        }else if (browser.equalsIgnoreCase("edge")){
+        }else if (browserType.equalsIgnoreCase("edge")){
             System.out.println("This is inside Driver Class - Edge");
             System.setProperty("webdriver.edge.driver","C:\\Users\\Kris\\Documents\\Selenium\\msedgedriver.exe");
             driver.set(new EdgeDriver());
-        }else if (browser.equalsIgnoreCase("chromium")){
+        }else if (browserType.equalsIgnoreCase("chromium")){
             System.out.println("This is inside Driver Class - Headless Chrome");
             System.setProperty("webdriver.chrome.driver","C:\\Users\\Kris\\Documents\\Selenium\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
             driver.set(new ChromeDriver(options));
         }
-        driver.get().manage().window().maximize();
+        getWebDriver().manage().window().maximize();
 
     }
 
@@ -45,12 +45,11 @@ public class Driver implements WebDriver {
         return driver.get();
     }
     public void loadBaseUrl(){
-        String url = Configuration.readBaseUrl();
+        String url = "http://training.skillo-bg.com:4300/posts/all"; //Configuration.readBaseUrl();
         get(url);
     }
     public void killDriverSession(){
         close();
-        quit();
         driver = null;
     }
 

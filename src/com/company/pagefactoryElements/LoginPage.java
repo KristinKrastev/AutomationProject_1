@@ -34,11 +34,11 @@ public class LoginPage  {
     private WebElement loginBtn;
 
     public LoginPage(Driver driver){
-        //getDriver();
-        wait = new WebDriverWait(driver, 5);
+       wait = new WebDriverWait(driver, 5);
        PageFactory.initElements( driver,this);
     }
     public void fillUsername(String username){
+        wait.until(ExpectedConditions.visibilityOf(usernameField));
         usernameField.sendKeys(username);
     }
     public void fillPassword(String password){
@@ -48,7 +48,7 @@ public class LoginPage  {
         loginBtn.click();
     }
 
-    public WebElement getSigninButton(){
+    public WebElement getSignInButton(){
         wait.until(ExpectedConditions.visibilityOf(signinButton));
         return signinButton;
     }

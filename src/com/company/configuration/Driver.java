@@ -24,7 +24,7 @@ public class Driver implements WebDriver {
         }else if (browserType.equalsIgnoreCase("firefox")){
             System.out.println("This is inside Driver Class - Firefox");
             System.setProperty("webdriver.gecko.driver","C:\\Users\\Kris\\Documents\\Selenium\\geckodriver.exe");
-            driver.set(new FirefoxDriver()); ;
+            driver.set(new FirefoxDriver());
         }else if (browserType.equalsIgnoreCase("edge")){
             System.out.println("This is inside Driver Class - Edge");
             System.setProperty("webdriver.edge.driver","C:\\Users\\Kris\\Documents\\Selenium\\msedgedriver.exe");
@@ -45,7 +45,7 @@ public class Driver implements WebDriver {
         return driver.get();
     }
     public void loadBaseUrl(){
-        String url = "http://training.skillo-bg.com:4300/posts/all"; //Configuration.readBaseUrl();
+       String url = Configuration.readBaseUrl();
         get(url);
     }
     public void killDriverSession(){

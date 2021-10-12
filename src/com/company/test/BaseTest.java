@@ -12,6 +12,8 @@ import java.io.IOException;
 public class BaseTest {
 
     private ThreadLocal <Driver> baseDriver = new ThreadLocal<Driver>();
+    protected String username;
+    protected String password;
 
     protected Driver getBaseDriver(){
         return baseDriver.get();
@@ -20,25 +22,21 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters("browser")
-    void beforeTest(String browser) {
-      //  Configuration.loadConfigurations();
-
-        baseDriver.set(new Driver(browser));
+    void beforeMethod(String browser) {
+               baseDriver.set(new Driver(browser));
         getBaseDriver().loadBaseUrl();
     }
 
-   /* @BeforeClass
+    @BeforeClass
     void beforeClass() throws IOException {
         username = Configuration.readUsername();
         password = Configuration.readPass();
 
-    }*/
-   /* @BeforeMethod
-    @Parameters("browser")
-    void setup(String browser) {
-        driver.set(new Driver("browser"));
-        driver.get().loadBaseUrl();
-    }*/
+    }
+    @BeforeTest
+    void beforeTest() throws IOException {
+        Configuration.loadConfigurations();
+    }
 
     @AfterMethod
     void cleanUp(ITestResult result) throws IOException {

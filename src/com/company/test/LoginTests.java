@@ -16,7 +16,10 @@ public class LoginTests extends BaseTest {
 
         LoginPage loginPage = new LoginPage(getBaseDriver());
         loginPage.clickLoginBtn();
-        Assert.assertFalse(loginPage.getSigninButton().isDisplayed());
+        loginPage.fillUsername(username);
+        loginPage.fillPassword(password);
+
+        Assert.assertFalse(loginPage.getSignInButton().isDisplayed());
         System.out.println("Test 1");
 
 

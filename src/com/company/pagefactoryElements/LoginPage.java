@@ -12,12 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage  {
 
-    private ThreadLocal <Driver> driver = new ThreadLocal<Driver>();
+    private Driver driver;
     private WebDriverWait wait;
 
-    protected Driver getDriver(){
+   /* protected Driver getDriver(){
         return driver.get();
-    }
+    }*/
 
     @FindBy(id="defaultLoginFormUsername")
     private WebElement usernameField;
@@ -30,10 +30,11 @@ public class LoginPage  {
     @FindBy(xpath = "//p[contains(text(),'Sign in')]")
     private WebElement signInHeader;
 
-    @FindBy(id="nav-link-login")
-    private WebElement loginBtn;
+    /*@FindBy(id="nav-link-login")
+    private WebElement loginBtn;*/
 
     public LoginPage(Driver driver){
+        this.driver = driver;
        wait = new WebDriverWait(driver, 5);
        PageFactory.initElements( driver,this);
     }
@@ -44,10 +45,10 @@ public class LoginPage  {
     public void fillPassword(String password){
         passwordField.sendKeys(password);
     }
-    public void clickLoginBtn(){
-        loginBtn.click();
-    }
 
+    public void clickSignInButton(){
+        signinButton.click();
+    }
     public WebElement getSignInButton(){
         wait.until(ExpectedConditions.visibilityOf(signinButton));
         return signinButton;

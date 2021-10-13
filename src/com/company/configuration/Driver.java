@@ -13,28 +13,28 @@ import java.util.Set;
 
 public class Driver implements WebDriver {
 
-    //WebDriver driver = null;
-    ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    WebDriver driver = null;
+    //ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     //Driver Constructor
     public Driver (String browserType){
         if(browserType.equalsIgnoreCase("chrome")){
             System.out.println("This is inside Driver Class - Chrome");
             System.setProperty("webdriver.chrome.driver","C:\\Users\\Kris\\Documents\\Selenium\\chromedriver.exe");
-            driver.set(new ChromeDriver());
+            driver = new ChromeDriver();
         }else if (browserType.equalsIgnoreCase("firefox")){
             System.out.println("This is inside Driver Class - Firefox");
             System.setProperty("webdriver.gecko.driver","C:\\Users\\Kris\\Documents\\Selenium\\geckodriver.exe");
-            driver.set(new FirefoxDriver());
+            driver = new FirefoxDriver();
         }else if (browserType.equalsIgnoreCase("edge")){
             System.out.println("This is inside Driver Class - Edge");
             System.setProperty("webdriver.edge.driver","C:\\Users\\Kris\\Documents\\Selenium\\msedgedriver.exe");
-            driver.set(new EdgeDriver());
+            driver = new EdgeDriver();
         }else if (browserType.equalsIgnoreCase("chromium")){
             System.out.println("This is inside Driver Class - Headless Chrome");
             System.setProperty("webdriver.chrome.driver","C:\\Users\\Kris\\Documents\\Selenium\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
-            driver.set(new ChromeDriver(options));
+            driver = (new ChromeDriver(options));
         }
         getWebDriver().manage().window().maximize();
 
@@ -42,7 +42,7 @@ public class Driver implements WebDriver {
 
     public WebDriver getWebDriver(){
 
-        return driver.get();
+        return this.driver;
     }
     public void loadBaseUrl(){
        String url = Configuration.readBaseUrl();

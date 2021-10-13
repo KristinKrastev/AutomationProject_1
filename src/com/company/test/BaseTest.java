@@ -11,19 +11,20 @@ import java.io.IOException;
 
 public class BaseTest {
 
-    private ThreadLocal <Driver> baseDriver = new ThreadLocal<Driver>();
+    //private ThreadLocal <Driver> baseDriver = new ThreadLocal<Driver>();
+    private Driver baseDriver = null;
     protected String username;
     protected String password;
 
     protected Driver getBaseDriver(){
-        return baseDriver.get();
+        return this.baseDriver;
     }
 
 
     @BeforeMethod
     @Parameters("browser")
     void beforeMethod(String browser) {
-               baseDriver.set(new Driver(browser));
+        baseDriver = new Driver(browser);
         getBaseDriver().loadBaseUrl();
     }
 
@@ -48,7 +49,7 @@ public class BaseTest {
     @AfterSuite
     public void cleanUpSuit(){
         // Quiting the Driers - Specifically for Firefox in order to quit and close.
-        if (getBaseDriver() ==null){
+        if (getBaseDriver() !=null){
             getBaseDriver().quit();
         }
     }
